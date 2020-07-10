@@ -1,0 +1,18 @@
+// Librerias, settings y variables
+// @import "lib/bootstrap_reboot";
+@import "lib/breakpoints.scss";
+@import "lib/grids.scss";
+@import "lib/globales.scss";
+@import "lib/funciones.scss";
+
+// Componentes Base
+@import "base/buttons.scss";
+@import "base/links.scss";
+@import "base/tipografia.scss";
+
+// Componentes
+@import "components/header.scss";
+// @import "components/categories.scss";
+@import "components/container.scss";
+@import "components/carousel.scss";
+@import "components/footer.scss"

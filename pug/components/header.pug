@@ -1,0 +1,18 @@
+-var logo = ["https://i.imgur.com/ImScGmQ.png"]
+-var logoUser = ["https://i.imgur.com/7Bk00UZ.jpg"]
+-var msj = ["WooCom.com","Home","Brahian Hurtado"]
+
+-var logos = ["https://i.imgur.com/ImScGmQ.png","https://i.imgur.com/RyhYXHg.jpg","https://i.imgur.com/7Bk00UZ.jpg"];
+
+header.header
+    .header__logo
+        img(src=""+logos[0])
+    .header__search
+        input.input(type="text" placeholder="Buscar")
+        img(src=""+logos[1], alt="Imagen Lupa")
+    .header__nav
+        nav.nav--header: ul
+            li: a(href="#") #{msj[1]}
+            li: a(href="#") #{msj[2]}
+        img(src=""+logos[2], alt="")
+        //- .icon
