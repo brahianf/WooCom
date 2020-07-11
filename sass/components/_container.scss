@@ -1,11 +1,7 @@
 .container {
-    width: 98%;
-    height: 700px;
+    width: 80%;
+    // height: 700px;
     margin: 0 auto;
-    @include display-grid;
-    @include  grid-template-columns(.3fr 1fr);
-    @include grid-template-rows(1fr .2fr);
-    @include  grid-gap(15px);
 
     // @include media(tablet){
     //     // display: grid;
@@ -47,5 +43,4 @@
         //     justify-content: center;
         // };
     }
-
 }

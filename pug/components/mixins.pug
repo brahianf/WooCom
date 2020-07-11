@@ -1,4 +1,4 @@
--var icons=["https://img.icons8.com/flat_round/64/000000/play--v1.png","https://img.icons8.com/flat_round/64/000000/plus.png"]
+-var icons=["https://img.icons8.com/flat_round/64/000000/plus.png"]
 
 mixin buy(cantidad,total,linkImage)
 	.buy
@@ -12,12 +12,11 @@ mixin buy(cantidad,total,linkImage)
 			img(src=""+linkImage)
 
 mixin carousel(titulo,precio, linkImagen)
-		.carousel__item
-			.carousel-item__img
-				//- img(src=""+linkImagen, alt="")
-			.carousel-item__details
-				div
-					img(src=""+icons[0], alt="")
-					img(src=""+icons[1], alt="")
-				p.carousel-item__details--title=titulo
-				p.carousel-item__details--subtitle=precio
+	.carousel__item
+		//- .carousel-item__img.fadeIn 
+		img(src=""+linkImagen, alt="").carousel-item__img
+		.carousel-item__details
+			div
+				img(src=""+icons[0], alt="")
+			p.carousel-item__details--title=titulo
+			p.carousel-item__details--subtitle=precio

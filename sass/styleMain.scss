@@ -11,8 +11,10 @@
 @import "base/tipografia.scss";
 
 // Componentes
+@import "components/animaciones.scss";
 @import "components/header.scss";
-// @import "components/categories.scss";
+@import "components/buyResume.scss";
 @import "components/container.scss";
 @import "components/carousel.scss";
-@import "components/footer.scss"
+@import "components/footer.scss";
+@import "components/modal.scss";

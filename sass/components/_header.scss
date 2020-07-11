@@ -47,9 +47,10 @@
         }
 
         & img {
-            width: 7%;
+            width: 8%;
             margin: 10px;
             cursor: pointer;
+            border-radius: 50%;
         }
         // @include media(tablet){
         //     grid-area: title title;
