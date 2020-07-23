@@ -137,7 +137,7 @@ h3 {
 }
 
 .container {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
 }
 .container__buy {
@@ -171,8 +171,8 @@ h3 {
 }
 
 .carousel__item {
-  width: 200px;
-  height: auto;
+  width: 250px;
+  height: 250px;
   margin: 10px;
   border-radius: 20px;
   overflow: hidden;
@@ -182,6 +182,7 @@ h3 {
   transition: 450ms all;
   transform-origin: center left;
   position: relative;
+  text-align: center;
 }
 
 .carousel__container:hover .carousel__item {
@@ -194,8 +195,8 @@ h3 {
 }
 
 .carousel-item__img {
-  width: 200px;
-  height: 250px;
+  width: 90%;
+  height: 90%;
   object-fit: cover;
   border-radius: 20px;
 }
@@ -219,18 +220,13 @@ h3 {
 }
 
 .carousel-item__details--title {
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.carousel-item__details--title {
   margin: 5px 0;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .carousel-item__details--subtitle {
-  font-size: 14px;
+  font-size: 18px;
   margin: 5px 0;
 }
 
