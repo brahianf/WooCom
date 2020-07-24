@@ -203,7 +203,7 @@ h3 {
 
 .carousel-item__details {
   width: 100%;
-  background: linear-gradient(to top, black 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to top, black 0%, rgba(0, 0, 0, 0.2) 100%);
   color: white;
   font-size: 12px;
   opacity: 1;
@@ -222,11 +222,11 @@ h3 {
 .carousel-item__details--title {
   margin: 5px 0;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .carousel-item__details--subtitle {
-  font-size: 18px;
+  font-size: 22px;
   margin: 5px 0;
 }
 
@@ -299,7 +299,11 @@ h3 {
   justify-content: center;
   flex-direction: column;
 }
+.modal h1 {
+  font-size: 18px;
+}
 .modal-buttons {
+  margin-top: 10px;
   display: flex;
   justify-content: space-between;
 }
@@ -309,13 +313,18 @@ h3 {
 
 .modal-content {
   margin: 20px;
+  margin-bottom: 0px;
   display: flex;
   align-items: center;
 }
+.modal-content h3 {
+  margin: 0px;
+  font-size: 18px;
+}
 
 .modal-content img {
-  width: 50%;
-  height: 256px;
+  width: 40%;
+  height: 60%;
   object-fit: cover;
   margin-right: 15px;
 }
@@ -323,6 +332,8 @@ h3 {
 .modal-content p {
   width: 50%;
   align-self: center;
+  font-size: 16px;
+  margin-bottom: 0px;
 }
 
 /*@keyframes animationIn {*/

@@ -56,7 +56,7 @@
   
   .carousel-item__details {
     width: 100%;
-    background: linear-gradient(to top, black 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(to top, black 0%, rgba(0, 0, 0, 0.2) 100%);
     color: white;
     font-size: 12px;
     opacity: 1;
@@ -76,10 +76,10 @@
   .carousel-item__details--title {
     margin: 5px 0;
     font-weight: bold;
-    font-size: 18px;;
+    font-size: 22px;;
   }
 
   .carousel-item__details--subtitle{
-      font-size: 18px;
+      font-size: 22px;
       margin: 5px 0;
   }

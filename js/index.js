@@ -1,5 +1,5 @@
 
-const API = 'https://api.bestbuy.com/v1/products((categoryPath.id=abcat0502000))?apiKey=nnsnWRzwWhuucvJc59z56TfR&pageSize=12&format=json';
+const API = 'https://api.bestbuy.com/v1/products((categoryPath.id=abcat0502000))?apiKey=nnsnWRzwWhuucvJc59z56TfR&pageSize=20&format=json';
 
 (async function load(){
 
@@ -47,9 +47,10 @@ const API = 'https://api.bestbuy.com/v1/products((categoryPath.id=abcat0502000))
 
   const $modal = document.getElementById('modal')
   const $modalTitle = $modal.querySelector('h1')
+  const $modalRef= $modal.querySelector('h2')
   const $modalImage = $modal.querySelector('img')
   const $modalDescription = $modal.querySelector('p')
-  // const $modalPrice = $modal.querySelector('h1')
+  const $modalPrice = $modal.querySelector('h3')
   const $overlay = document.getElementById('overlay')
   const $hideModal = document.getElementById('hide-modal')
 
@@ -58,24 +59,63 @@ const API = 'https://api.bestbuy.com/v1/products((categoryPath.id=abcat0502000))
     return productList.find(product => product.sku === parseInt(id,10));
   }
 
-
   function showModal($element) {
     $overlay.classList.add('active')
     $modal.style.animation = 'modalIn .8s forwards'
     const id = $element.dataset.id
     const data = findbyId(id)
     $modalTitle.textContent = data.name
+    $modalRef.textContent = "Ref:  " + data.sku;
     $modalImage.setAttribute('src', data.image);
     $modalDescription.textContent = data.longDescription
-    // $modalPrice.textContent=data.regularPrice
+    $modalPrice.textContent = "$  " +data.regularPrice
+    // const $sub = document.querySelectorAll('#sub');
+    // const $add =  document.querySelectorAll('#add')
+    // const $sub =  document.querySelectorAll('#ub')
+    const $add = document.getElementById('add');
+    const $sub = document.getElementById('sub');
+    addProductCart($add,data.sku,data.name,data.regularPrice)
+    subProductCart($sub,data.sku,data.name,data.regularPrice)
   }
-
 
   function addEventClick($element) {
     $element.addEventListener('click', () => {
       // alert('click')
       showModal($element)
     })
+  }
+
+  const $cantidad= document.getElementById('cantidadProductos')
+  const $total = document.getElementById('totalPago')
+  var cantidad=0;
+  var total=0;
+
+  function addProductCart($element,id,name,price){
+    $element.addEventListener('click', () => {
+      addCart(id,name,price);
+    })
+  }
+  function addCart(id,name,price){
+    // console.log(name)
+    cantidad=cantidad+1;
+    total=total+price;
+    $cantidad.textContent = " Cantidad Productos: " + cantidad;
+    $total.textContent = " Total: " + total.toFixed(2)
+  }
+
+  function subProductCart($element,id,name,price){
+    $element.addEventListener('click', () => {
+      subCart(id,name,price);
+    })
+  }
+  function subCart(id,name,price){
+    // console.log(name)
+    if(cantidad>0){
+      cantidad=cantidad-1;
+      total=total-price;
+    }
+    $cantidad.textContent = " Cantidad Productos: " + cantidad;
+    $total.textContent = " Total: " + total.toFixed(2)
   }
 
   function  renderProductList(list, $container){
@@ -86,8 +126,7 @@ const API = 'https://api.bestbuy.com/v1/products((categoryPath.id=abcat0502000))
       $container.innerHTML += HTMLString
       const $primaryProductlist = document.querySelectorAll('#primaryProductlist');
       $primaryProductlist.forEach(item => addEventClick(item));
-
-      // const image = $container.querySelectorAll('img')
+      // const $images = $container.querySelectorAll('img')
       // image.addEventListener('load', (event) => {
       //   // $image.classList.add('fadeIn')
       //   event.srcElement.classList.add('fadeIn')
@@ -98,17 +137,6 @@ const API = 'https://api.bestbuy.com/v1/products((categoryPath.id=abcat0502000))
   // console.log(productList)
   const $carouselContainer = document.querySelector('#carousel')
   renderProductList(productList, $carouselContainer)
-
-  const $add = document.querySelectorAll('#add');
-  const $sub = document.querySelectorAll('#sub');
-  $add.forEach(item => item.addEventListener('click', addToCart(item)));
-  // $sub.forEach(item => item.addEventListener('click', subToCart(item)));
-
-  function addToCart(item){
-    const id = item.dataset.id
-    const product= findbyId(id);
-    console.log(product);
-  }
 
   $hideModal.addEventListener('click', hideModal)
   function hideModal(){

@@ -62,7 +62,11 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  & h1 {
+    font-size: 18px;
+  }
   &-buttons {
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
     & img {
@@ -73,19 +77,26 @@
 
 .modal-content {
   margin:20px;
+  margin-bottom: 0px;
   display: flex;
   align-items: center;
+  & h3 {
+    margin: 0px;
+    font-size:18px
+  }
 }
 
 .modal-content img {
-  width: 50%;
-  height: 256px;
+  width: 40%;
+  height: 60%;
   object-fit: cover;
   margin-right: 15px;
 }
 .modal-content p {
   width: 50%;
   align-self: center;
+  font-size: 16px;
+  margin-bottom: 0px;
 }
 /*@keyframes animationIn {*/
 @keyframes modalIn {
