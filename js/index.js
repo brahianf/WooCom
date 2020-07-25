@@ -100,8 +100,8 @@ var list=[];
   function addProductCart($element,data){
     $element.addEventListener('click', () => {
       list.push(data)
-      // addToLocalStorageArray('cart',data.regularPrice);
-      // list=localStorage.getItem('cart').split(',')
+      addToLocalStorageArray('cart',data.regularPrice);
+      list=localStorage.getItem('cart').split(',')
       // list.forEach((item) => {
       //   total=total+parseInt(item);
       // })
