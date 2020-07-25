@@ -1,6 +1,6 @@
 
-const API = 'https://api.bestbuy.com/v1/products((categoryPath.id=abcat0502000))?apiKey=nnsnWRzwWhuucvJc59z56TfR&pageSize=20&format=json';
-
+const API = 'https://api.bestbuy.com/v1/products((categoryPath.id=abcat0502000))?apiKey=1j1YhDjYS09nEL9TBG2ab8OJ&pageSize=24&format=json';
+var list=[];
 (async function load(){
 
   const getData = async (api_url) => {
@@ -17,19 +17,19 @@ const API = 'https://api.bestbuy.com/v1/products((categoryPath.id=abcat0502000))
   }
 
   async function cacheExist(list){
-    const listProducts=`${list}List`;
-    const cacheList=window.localStorage.getItem('listProducts')
+    const productsList=`${list}List`;
+    const cacheList=localStorage.getItem('productsList')
     if(cacheList){
       return JSON.parse(cacheList)
     }
     // debugger
     const {products: data} =  await getData(API)
-    window.localStorage.setItem(listProducts, JSON.stringify(data))
+    localStorage.setItem(productsList, JSON.stringify(data))
     return data
   }
 
   const productList= await cacheExist('products');
-  console.log(productList)
+  // console.log(productList)
 
   function productItemtemplate(product) {
     return (
@@ -69,13 +69,10 @@ const API = 'https://api.bestbuy.com/v1/products((categoryPath.id=abcat0502000))
     $modalImage.setAttribute('src', data.image);
     $modalDescription.textContent = data.longDescription
     $modalPrice.textContent = "$  " +data.regularPrice
-    // const $sub = document.querySelectorAll('#sub');
-    // const $add =  document.querySelectorAll('#add')
-    // const $sub =  document.querySelectorAll('#ub')
     const $add = document.getElementById('add');
     const $sub = document.getElementById('sub');
-    addProductCart($add,data.sku,data.name,data.regularPrice)
-    subProductCart($sub,data.sku,data.name,data.regularPrice)
+    addProductCart($add,data)
+    subProductCart($sub,data)
   }
 
   function addEventClick($element) {
@@ -85,38 +82,54 @@ const API = 'https://api.bestbuy.com/v1/products((categoryPath.id=abcat0502000))
     })
   }
 
+  var addToLocalStorageArray = function (name, value) {
+    var existing = localStorage.getItem(name);
+    // Otherwise, convert the localStorage string to an array
+    existing = existing ? existing.split(',') : [];
+    // Add new data to localStorage Array
+    existing.push(value);
+    // Save back to localStorage
+    localStorage.setItem(name, existing.toString());
+  };
+
   const $cantidad= document.getElementById('cantidadProductos')
   const $total = document.getElementById('totalPago')
-  var cantidad=0;
-  var total=0;
+  let cantidad=0;
+  let total=0;
 
-  function addProductCart($element,id,name,price){
+  function addProductCart($element,data){
     $element.addEventListener('click', () => {
-      addCart(id,name,price);
+      list.push(data)
+      // addToLocalStorageArray('cart',data.regularPrice);
+      // list=localStorage.getItem('cart').split(',')
+      // list.forEach((item) => {
+      //   total=total+parseInt(item);
+      // })
+
+      cantidad++;
+      total=total+data.regularPrice;
+      $total.innerHTML = "Total: " + total.toFixed(2);
+      $cantidad.innerHTML = "Cantidad Productos: " + cantidad;
     })
   }
-  function addCart(id,name,price){
-    // console.log(name)
-    cantidad=cantidad+1;
-    total=total+price;
-    $cantidad.textContent = " Cantidad Productos: " + cantidad;
-    $total.textContent = " Total: " + total.toFixed(2)
-  }
-
-  function subProductCart($element,id,name,price){
+  function subProductCart($element,data){
     $element.addEventListener('click', () => {
-      subCart(id,name,price);
+      list.pop(data);
+      // addToLocalStorageArray('cart',data.regularPrice);
+      // list=localStorage.getItem('cart').split(',')
+      // list.forEach((item) => {
+      //   total=total+parseInt(item);
+      // })
+      if(cantidad>0){
+        cantidad--;
+        total=total-data.regularPrice;
+        $total.innerHTML = "Total: " + total.toFixed(2);
+        $cantidad.innerHTML = "Cantidad Productos: " + cantidad;
+      }
     })
   }
-  function subCart(id,name,price){
-    // console.log(name)
-    if(cantidad>0){
-      cantidad=cantidad-1;
-      total=total-price;
-    }
-    $cantidad.textContent = " Cantidad Productos: " + cantidad;
-    $total.textContent = " Total: " + total.toFixed(2)
-  }
+  // $cantidad.innerHTML = "Cantidad Productos: " + localStorage.getItem('total');
+  // $total.innerHTML = " Total: " + total.toFixed(2);
 
   function  renderProductList(list, $container){
     $container.children[0].remove()
@@ -145,3 +158,9 @@ const API = 'https://api.bestbuy.com/v1/products((categoryPath.id=abcat0502000))
   }
 
 })()
+
+export function getList(){
+  return list;
+}
+
+// export default getList;

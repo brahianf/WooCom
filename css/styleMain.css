@@ -384,3 +384,25 @@ h3 {
 .footer a:hover {
   text-decoration: underline;
 }
+
+.main {
+  text-align: center;
+}
+
+.shop {
+  margin: 20px auto;
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-evenly;
+}
+.shop h2 {
+  font-size: 22px;
+  padding: 10px;
+  border: 1px solid gray;
+}
+
+.totalPagar h2 {
+  font-size: 22px;
+  padding: 10px;
+}

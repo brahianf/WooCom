@@ -1,15 +1,17 @@
 -var icons=["https://img.icons8.com/flat_round/64/000000/plus.png"]
 
-mixin buy(cantidad,total,linkImage)
-	.buy
-		.biography__video--desciption
-			h2=title
-			p=paragraph
-			a(href="")
-				p=link
-			img(src="", alt="")
-		.biography__video--image
-			img(src=""+linkImage)
+mixin shopp()
+	.shop
+		//- .cantidad
+		//- 	h2="Cantidad"
+		.descripcion
+			h2="Descripcion"
+			.details
+		.total
+			h2="Precio"
+			.details
+	.totalPagar
+		h2="Total a Pagar"
 
 mixin carousel(titulo,precio, linkImagen)
 	.carousel__item
